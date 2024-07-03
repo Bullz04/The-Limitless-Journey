@@ -1,0 +1,311 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/anchor.css">
+    <link rel="stylesheet" type="text/css" href="./css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="./css/modal.css">
+    <link rel="stylesheet" type="text/css" href="./css/uzi.css">
+    <link rel="stylesheet" type="text/css" href="./css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="./css/progressBar.css">
+    <link rel="stylesheet" type="text/css" href="./css/automation.css">
+    <link rel="stylesheet" type="text/css" href="./css/civilization.css">
+    <link rel="stylesheet" type="text/css" href="./css/achievements.css">
+    <link rel="stylesheet" type="text/css" href="./css/options.css">
+    <title>The Limitless Journey</title>
+    <link rel="shortcut icon" href="./images/tlj-logo.svg" type="image/x-icon">
+</head>
+<body  onbeforeunload="saveGame()">
+    <span id="FeatureMilestone"></span><br><br>
+    You have <span id="PointAmt" class="title"></span> points<br> <!--Font size is set on update.js-->
+    (+<span id="PointsPerSecond"></span>/s)<br>
+    
+
+    <div class="tabButtons">
+        <button id="main-Tabbtn" onclick="tab('main')">Main</button>
+        <button id="miscellaneous-Tabbtn" onclick="tab('miscellaneous')">Miscellaneous</button>
+        <button id="stats-Tabbtn" onclick="tab('stats')">Statistics</button>
+        <button id="achievements-Tabbtn" onclick="tab('achievements')">Achievements</button>
+        <button id="automation-Tabbtn" onclick="tab('automation')">Automation</button>
+        
+    </div><br>
+
+    <div tab="main">
+        <div class="tabButtons">
+            <button id="point-prod-page-MainTabbtn" onclick="mainTab('point-prod-page')" style="display: none;">Points</button>
+            <button id="superpoint-prod-page-MainTabbtn" onclick="mainTab('superpoint-prod-page')" style="display: none;">Super Points</button>
+            <button id="thrusterpoint-prod-page-MainTabbtn" onclick="mainTab('thrusterpoint-prod-page')" style="display: none;">Thruster Points</button>
+            <button id="civilization-prod-page-MainTabbtn" onclick="mainTab('civilization-prod-page')" style="display: none;">Civilization</button>
+        </div>
+        <br>
+        <div mainTab="point-prod-page" style="display: none;">
+            <button id="PointClickButton">Trigger click production<br>+<span id="PointsPerClick"></span> points</button><br><br>
+            <span id="RankNumber"></span><br> 
+            <button id="RankButton">
+                <span id="RankScalingWeakness"></span>
+                Reset your progress to rank up<br>
+                <span id="RankDesc"></span><br>
+                Requirement: <span id="RankReq"></span> points
+            </button>
+            <br>
+            <div class="tabButtons">
+                <button id="producers-PointMainTabbtn" onclick="pointMainTab('producers')">Producers</button>
+                <button id="upgrades-PointMainTabbtn" onclick="pointMainTab('upgrades')">Upgrades</button>
+            </div>
+            <br>
+            <div pointMainTab="producers">
+                <table id="PointProducerTable" style="text-align: center;">
+                </table>
+            </div>
+            <div pointMainTab="upgrades">
+                <button onclick="temp.basics.pointUpgrades.switchBuyMode()">Buy Mode: <span id="PointUpgradeBuyMode"></span> (Click to switch)</button><br><br>
+                <div id="PointUpgradeContainer" class="container"></div>
+            </div>
+        </div>
+        <div mainTab="superpoint-prod-page" style="display: none;">
+            <div id="SuperPointLockedScreen">
+                <span style="font-size: 25px;">TERKUNCI</span>
+            </div>
+            <div id="SuperPointMainScreen">
+                <table id="SPProductionTable">
+                    <tr>
+                        <td>
+                            You have <span id="RawSuperPointAmt"></span> raw super points (<span id="RawSPPerSecond"></span>/s)<br>
+                            <button id="SPGeneratorBuyMaxButton">Buy Max</button><br>
+                            <button id="SPGeneratorButton">
+                                Buy Super Point Generator<br>
+                                +<span id="RawSuperPointGainBase"></span>/s raw super point production base<br>
+                                Amount: <span id="SuperPontGeneratorAmt"></span><br><br>
+                                Req: <span id="SuperPontGeneratorReq"></span> points
+                            </button>
+                        </td>
+                        <td>
+                            You have <span id="SuperPointAmt"></span> super points (+<span id="SPPerSecond"></span>/s)<br>
+                            Multiplying point gain by <span id="SPEffect"></span><br>
+                            Super points and raw super points will be reset upon rank up<br><br>
+                            <div class="SuperPointProcessor">
+                                <span class="title">Super Point Processor</span><br><br>
+                                <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);"><span id="SPProcessorProcessRate"></span>
+                                    <div id="SPProcessorProcess" class="ProgressBarProgress" style="clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0%); background-color: yellow;"><span id="SPProcessorProcessRate"></span></div>
+                                </div>
+                                The Super Point Processor cannot process raw super points any faster than<br><span id="SPProcessorLimit"></span>/s.
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br><br><br>
+                <button onclick="temp.superPoints.upgrades.switchBuyMode()">Buy Mode: <span id="SPUpgradeBuyMode"></span> (Click to switch)</button>
+                &nbsp;&nbsp;<br><br>
+                <div id="SPUpgradeContainer" class="container"></div>
+            </div>
+        </div>
+        <div mainTab="thrusterpoint-prod-page" style="display: none;">
+            <button id="PointClickButton">Trigger click production<br>+<span id="PointsPerClick"></span> points</button><br><br>
+            Thruster points, click points, and idle points will be reset on rank up.<br><br>
+            You have <span id="ThrusterPointAmt">X</span> thruster points.<br>
+            (+<span id="ThrusterPointIdleGain"></span>/s)<br>
+            (+<span id="ThrusterPointAutoGain"></span>/autoclick)<br>
+            (+<span id="ThrusterPointManualGain"></span>/click)<br>
+            They are produced based on amount of click points and idle points.
+
+            <table id="ThrusterPointsTable"><br><br><br>
+                <tr>
+                    <td>
+                        You have <span id="ClickPointAmt">X</span> click points.<br>
+                        Multiplying production power of cursor by <span id="ClickPointEffect"></span>.<br>
+                        (+<span id="ClickPointAutoGain"></span>/autoclick)<br>
+                        (+<span id="ClickPointManualGain"></span>/click)<br>
+                        They are produced based on total cursors.
+                    </td>
+                    <td>
+                        You have <span id="IdlePointAmt">X</span> idle points.<br>
+                        Multiplying production power of factory by <span id="IdlePointEffect"></span>.<br>
+                        (+<span id="IdlePointGain"></span>/s)<br>
+                        They are produced based on total factories.
+                    </td>
+                </tr>
+            </table><br><br>
+            <table id="ThrusterTable">
+                <tr>
+                    <td style="padding-right: 10px;">
+                        You have <span id="ThrusterAmt">X</span> thrusters
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <button id="ThrusterBuySinglesButton" style="width: 120px; height: 40px;">Buy 1</button><br>
+                        <button id="ThrusterBuyMaxButton" style="width: 120px; height: 40px;">Buy Max</button><br>
+                        Cost: <span id="ThrusterCost">X</span> thruster points
+                    </td>
+                </tr>
+            </table><br>
+            <button onclick="temp.thrusterPoints.upgrades.switchBuyMode()">Buy Mode: <span id="ThrusterPointUpgradeBuyMode"></span> (Click to switch)</button><br><br>
+            <div id="ThrusterPointUpgradeContainer" class="container"></div>
+        </div>
+        <div mainTab="civilization-prod-page" style="display: none;">
+            <div class="tabButtons">
+                <button>Ocy</button>
+                <button>Fuhreezal</button>
+            </div><br>
+            Civilization speed: &times;1<br>
+            <div id="Inventory"></div>
+        </div>
+    </div>
+
+    <div tab="stats" style="display: none;">
+        <div class="tabButtons">
+            <button id="general-StatsTabbtn" onclick="statsTab('general')">General</button>
+            <button id="rank-rewards-StatsTabbtn" onclick="statsTab('rank-rewards')">Rank Rewards</button>
+        </div>
+        <div statsTab="general">
+            <table id="GeneralStatTable"></table>
+        </div>
+        <div statsTab="rank-rewards">
+            <table id="RankRewardTable">
+                <tr>
+                    <td id="number">No.</td>
+                    <td id="required">Rank</td>
+                    <td id="reward">Reward</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div tab="miscellaneous" style="display: none;">
+        <div class="tabButtons">
+            <button id="options-MiscTabbtn" onclick="miscellaneousTab('options')">Options</button>
+            <button id="about-MiscTabbtn" onclick="miscellaneousTab('about')">About</button>
+        </div><br>
+        <div miscTab="options">
+            <button onclick="saveGame()">Save</button><button onclick="confirmHardReset()">START OVER</button><br>
+            <button onclick="document.getElementById('saveText').value = getExportedSave()">Export</button><button onclick="confirmImportSave()">Import (from textbox)</button><br>
+            <textarea id="saveText" placeholder="Exported save will appear here"></textarea>
+            <div class="container">
+                <div class="OptionSection">
+                    Notation:<br>
+                    <button class="yellow" id="standardNotation" onclick="switchNotation('standard')">Standard</button><br>
+                    <button class="yellow" id="scientificNotation" onclick="switchNotation('scientific')">Scientific</button>
+                </div>
+                <div class="OptionSection">
+                    Offline Progression:<br>
+                    <button class="yellow" id="OfflineProgressionOn" onclick="switchOfflineProg('on')">Enabled</button><br>
+                    <button class="yellow" id="OfflineProgressionLimited" onclick="switchOfflineProg('limited')" style="display: none;">Terbatas (8 jam)</button>
+                    <button class="yellow" id="OfflineProgressionOff" onclick="switchOfflineProg('off')">Disabled</button>
+                </div>
+            </div>
+        </div>
+        <div miscTab="about">
+            <span class="title">The Limitless Journey</span><br>
+            <img src="./images/tlj-logo.svg" width="200" height="200">
+            <br>
+            Wander through this universe and witness secrets of this universe. Can you reach the edge of The Limitless Journey?<br><br>
+            This is my first game. All other previous projects are modifications, which don't come from my idea, and are abandoned.<br>
+            If you found this game fun, consider be one of my patrons.<br><br>
+            <a href="https://discord.gg/aggGeRc" target="_blank"><img id="socialImage" src="./images/discord-icon.svg" alt=""></a>&nbsp;
+            <a href="https://www.patreon.com/Bullz04" target="_blank"><img id="socialImage" src="./images/patreon-icon.svg" alt=""></a>
+        </div>
+    </div>
+    <div tab="automation" style="display: none;">
+        <button onclick="temp.automation.basicAutomators.switchBuyMode()">Upgrade Mode: <span id="AutomationBuyMode"></span></button><br>
+        <span class="title" style="font-size: 20px;">Basic Automators</span>
+        
+        <div class="AutomationContainer">
+            <div id="Autoclicker" class="automator">
+                <span class="title">Autoclicker</span><br>
+                Automatically trigger click production for you<br>
+                Level: <span id="AutoclickerLevel"></span><br>
+                <span id="AutoclickerEffect"></span><br>
+                <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
+                    <div id="AutoclickerProgress" class="ProgressBarProgress" style="clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0%); background-color: yellow;">&nbsp;</div>
+                </div>
+                Active: <button id="AutoclickerActivation" onclick="toggleBasicAutomator('autoclicker')"></button><br>
+                <button id="AutoclickerBuyButton">Upgrade Autoclicker<br>Req: <span id="AutoclickerBuyCost"></span></button>
+            </div>
+            <div id="Autoupgrader" class="automator">
+                <span class="title">Autoupgrader</span><br>
+                <!--Membeli peningkatan poin secara otomatis saat jumlah poin sebanyak 4 kalinya harga-->
+                Automatically buy point upgrades for you when points are above 4 times of the cost<br>
+                Level: <span id="AutoupgraderLevel"></span><br>
+                <span id="AutoupgraderEffect"></span><br>
+                <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
+                    <div id="AutoupgraderProgress" class="ProgressBarProgress" style="clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0%); background-color: yellow;">&nbsp;</div>
+                </div>
+                Active: <button id="AutoupgraderActivation" onclick="toggleBasicAutomator('autoupgrader')"></button><br>
+                <button id="AutoupgraderBuyButton">Upgrade Autoupgrader<br>Req: <span id="AutoupgraderBuyCost"></span></button>
+            </div>
+            <div id="Autothruster" class="automator">
+                <span class="title">Autothruster</span><br>
+                Automatically buy a thruster for you<br>
+                Level: <span id="AutothrusterLevel"></span><br>
+                <span id="AutothrusterEffect"></span><br>
+                <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
+                    <div id="AutothrusterProgress" class="ProgressBarProgress" style="clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0%); background-color: yellow;">&nbsp;</div>
+                </div>
+                Active: <button id="AutothrusterActivation" onclick="toggleBasicAutomator('autothruster')"></button><br>
+                <button id="AutothrusterBuyButton">Upgrade Autothruster<br>Req: <span id="AutothrusterBuyCost"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <div tab="achievements" style="display: none;">
+        Achievement Points: <span id="AchievementPointAmt" class="title">0</span><br>
+        You gain <span id="AchievementPointEffect" class="title">X</span> more points due to your Achievement Points
+        <div id="AchievementContainer"></div>
+    </div>
+
+    <div id="modalBG" class="modalBGscreen">
+        <div id="LoadingScreen">
+            <span class="title" style="font-weight: normal !important;">Loading...</span>
+        </div>
+        <div id="OfflineCalculation" style="display: none;">
+            <span class="title" style="font-weight: normal !important;">Simulating offline progression...</span><br>
+            Time remaining: <span id="OfflineTime"></span>s
+        </div>
+        <div id="ImportConfirmation" class="MessageBox" style="display: none;">
+            <div class="MessageTitle">Import Save?</div>
+            <div class="MessageContent">This action will overwrite your current save!</div>
+            <div class="MessageChoice"><button onclick="confirmStatus.import = false; importSave(document.getElementById('saveText').value)">Yes</button><button onclick="confirmStatus.import = false">No</button></div>
+        </div>
+        <div id="HardResetConfirmation" class="MessageBox" style="display: none;">
+            <div class="MessageTitle">Hard Reset Save?</div>
+            <div class="MessageContent">
+                This action will DELETE your current save! I'd suggest to export save first<br><br>
+                Click yes 50 times to confirm
+            </div>
+            <div class="MessageChoice"><button id="YesHardReset" onclick="yesClickHardReset()">Yes (50)</button><button onclick="confirmStatus.hardReset = false; yesHardResetClicksLeft = 50">No</button></div>
+        </div>
+    </div>
+
+    <script src="./javascripts/libraries/break_eternity.js"></script>
+
+    <!--Setup-->
+
+    <script src="./javascripts/constants/tabs.js"></script>
+    <script src="./javascripts/constants/achievements.js"></script>
+    <script src="./javascripts/constants/superPoints.js"></script>
+    <script src="./javascripts/constants/automation.js"></script>
+    <script src="./javascripts/constants/thrusterPoints.js"></script>
+
+    <script src="./javascripts/important/variables.js"></script>
+    <script src="./javascripts/important/temp.js"></script>
+    <script src="./javascripts/important/saving.js"></script>
+    <script src="./javascripts/important/format.js"></script>
+    <script src="./javascripts/important/options.js"></script>
+    <script src="./javascripts/important/loop.js"></script>
+    <script src="./javascripts/important/update.js"></script>
+    <script src="./javascripts/important/tabSystem.js"></script>
+    
+    <script src="./javascripts/main/basics.js"></script>
+    <script src="./javascripts/main/milestones.js"></script>
+    <script src="./javascripts/main/superPoints.js"></script>
+    <script src="./javascripts/main/thrusterPoints.js"></script>
+    <script src="./javascripts/main/automation.js"></script>
+    <script src="./javascripts/main/statistics.js"></script>
+    <script src="./javascripts/main/achievements.js"></script>
+
+    <!--Init-->
+    <script src="./javascripts/init.js"></script>
+    
+    
+</body>
+</html>

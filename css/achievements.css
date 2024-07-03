@@ -1,0 +1,36 @@
+#AchievementContainer {
+    display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+    align-items: center;
+}
+.Achievement {
+    width: 330px;
+    height: 160px;
+    margin: 5px;
+    padding: 3px;
+    background-color: rgb(102, 102, 0);
+    border: 1px solid yellow;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.Achievement[mobile] {
+    width: calc(330px / 1.75);
+    height: calc(160px / 1.75);
+    margin: calc(5px / 1.75);
+    padding: calc(3px / 1.75);
+    background-color: rgb(102, 102, 0);
+    border: calc(1px / 1.75) solid yellow;
+    border-radius: 5px;
+    font-size: calc(13px / 1.75);
+}
+
+.AchTierNumber {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.AchTierNumber[mobile] {
+    font-weight: bold;
+    font-size: calc(16px / 1.75);
+}

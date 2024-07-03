@@ -1,0 +1,95 @@
+button {
+    color: aqua;
+    background-color: rgb(0, 7, 99);
+    border: 2px solid aqua;
+    margin: 2px;
+    font-size: 13px;
+}
+
+button[mobile] {
+    font-size: calc(13px / 1.75);
+    border: calc(2px / 1.75) solid aqua;
+    margin: calc(2px / 1.75);
+}
+
+button#RankButton {
+    width: 240px;
+    height: 150px;
+    margin: 30px;
+    margin-top: 0px;
+}
+
+button#RankButton[mobile] {
+    width: calc(240px / 1.75);
+    height: calc(150px / 1.75);
+    margin: calc(30px / 1.75);
+    margin-top: 0px;
+}
+button#SPGeneratorButton {
+    width: 220px;
+    height: 150px;
+}
+button#SPGeneratorButton[mobile] {
+    width: calc(220px / 1.75);
+    height: calc(150px / 1.75);
+}
+
+button.yellow {
+    color: rgb(255, 255, 0);
+    background-color: rgb(112, 110, 0);
+    border: 2px solid rgb(255, 255, 0);
+}
+
+button.yellow[mobile] {
+    color: rgb(255, 255, 0);
+    background-color: rgb(112, 110, 0);
+    border: calc(2px / 1.75) solid rgb(255, 255, 0);
+}
+
+button.disabled {
+    color: rgb(0, 0, 0);
+    background-color: rgb(73, 73, 73);
+    border: 2px solid rgb(134, 134, 134);
+}
+
+button.disabled[mobile] {
+    color: rgb(0, 0, 0);
+    background-color: rgb(73, 73, 73);
+    border: calc(2px / 1.75) solid rgb(134, 134, 134);
+}
+
+button.upgrade {
+    color: rgb(157, 255, 0);
+    background-color: rgb(0, 78, 7);
+    border: 2px solid rgb(157, 255, 0);
+    font-size: 12px;
+    width: 215px;
+    height: 165px;
+}
+
+button.upgrade[mobile] {
+    color: rgb(157, 255, 0);
+    background-color: rgb(0, 78, 7);
+    border: calc(2px / 1.75) solid rgb(157, 255, 0);
+    font-size: calc(12px / 1.75);
+    width: calc(215px / 1.75);
+    height: calc(165px / 1.75);
+}
+
+button.disabledUpgrade {
+    color: rgb(0, 0, 0);
+    background-color: rgb(73, 73, 73);
+    border: 2px solid rgb(134, 134, 134);
+    font-size: 12px;
+    width: 215px;
+    height: 165px;
+}
+
+button.disabledUpgrade[mobile] {
+    color: rgb(0, 0, 0);
+    background-color: rgb(73, 73, 73);
+    border: calc(2px / 1.75) solid rgb(134, 134, 134);
+    font-size: calc(12px / 1.75);
+    width: calc(215px / 1.75);
+    height: calc(165px / 1.75);
+}

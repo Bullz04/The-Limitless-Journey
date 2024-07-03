@@ -1,0 +1,1 @@
+const SUPER_POINT_UNLOCK = new OmegaNum(1e13)

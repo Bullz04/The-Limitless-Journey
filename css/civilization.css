@@ -1,0 +1,14 @@
+#Inventory {
+    display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+    align-items: left;
+    margin-right: auto;
+    margin-left: auto;
+}
+.InventoryQuantity {
+    position: absolute;
+    font-size: 12px;
+    bottom: 0%;
+    right: 0%;
+}

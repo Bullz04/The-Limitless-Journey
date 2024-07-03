@@ -1,0 +1,23 @@
+.ProgressBar {
+    position: relative;
+    border: 2px solid white;
+    min-height: 13px;
+    border-radius: 9999px;
+    user-select: none;
+}
+.ProgressBar[mobile] {
+    position: relative;
+    border: calc(2px / 1.75) solid white;
+    min-height: calc(13px / 1.75);
+    border-radius: 9999px;
+    user-select: none;
+}
+
+.ProgressBar .ProgressBarProgress {
+    position: absolute;
+    border-radius: 9999px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
