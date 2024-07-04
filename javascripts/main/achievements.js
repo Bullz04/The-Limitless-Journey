@@ -13,7 +13,7 @@ function getAchievementPointEffect() {
 
 function getAchievementTierFormula(id) {
     if (id == "a1") {//Point Crazy Rich
-        return player.points.div(1e6).max(1).logBase(1e3)
+        return player.points.div(1e6).logBase(1e3)
         .plus(1).max(0).floor()
         //OmegaNum.pow(10, x).times(1e6) = y
     }
