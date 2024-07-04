@@ -2,7 +2,7 @@
 
 function saveGame() {
     let saveCode = JSON.parse(JSON.stringify(player))
-    localStorage.setItem("PointClickerSave", JSON.stringify(saveCode))
+    localStorage.setItem("The-Limitless-Journey-Save", JSON.stringify(saveCode))
 }
 
 function loadValue(x, alt) {
@@ -32,7 +32,7 @@ function loadGame(importedSave) {
         loadedSave = JSON.parse(atob(importedSave))
     } else {
         try {
-            loadedSave = localStorage.getItem("PointClickerSave")
+            loadedSave = localStorage.getItem("The-Limitless-Journey-Save")
         } catch (error) {
             console.warn("lol")
         }
