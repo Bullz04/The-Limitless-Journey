@@ -41,9 +41,9 @@ var featureMilestones = {
         reached: () => {
             return false
         },
-        desc: () => "Reach " + format(new OmegaNum("1e175")) + " points and Rank " + format(25) + " to unlock civilization.",
+        desc: () => "Reach " + format(new OmegaNum("1e200")) + " points and Rank " + format(25) + " to reach endgame.",
         percentage: () => {
-            return player.points.max(1).logBase(10).div(new OmegaNum("1e175").max(1).logBase(10)).min(1)
+            return player.points.max(1).logBase(10).div(new OmegaNum("1e200").max(1).logBase(10)).min(1)
             .plus(player.rank.div(25).min(1)).div(2).times(100)
         }
     },
@@ -62,6 +62,6 @@ function getLowestDisplayed() {//Which milestone should be displayed
 
 function featureMilestoneDisp() {
     let m = Object.keys(featureMilestones)
-    if (getLowestDisplayed()==m.length) return "Semua batu mil telah diraih!"
+    if (getLowestDisplayed()==m.length) return "Endgame reached!"
     else return featureMilestones[m[getLowestDisplayed()]].desc() + " (" + format(featureMilestones[m[getLowestDisplayed()]].percentage(), 3, 3) + "%)"
 }

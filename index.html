@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/automation.css">
     <link rel="stylesheet" type="text/css" href="./css/civilization.css">
     <link rel="stylesheet" type="text/css" href="./css/achievements.css">
+    <link rel="stylesheet" type="text/css" href="./css/changelog.css">
     <link rel="stylesheet" type="text/css" href="./css/options.css">
     <title>The Limitless Journey</title>
     <link rel="shortcut icon" href="./images/tlj-logo.svg" type="image/x-icon">
@@ -175,6 +176,7 @@
         <div class="tabButtons">
             <button id="options-MiscTabbtn" onclick="miscellaneousTab('options')">Options</button>
             <button id="about-MiscTabbtn" onclick="miscellaneousTab('about')">About</button>
+            <button id="changelog-MiscTabbtn" onclick="miscellaneousTab('changelog')">Changelog</button>
         </div><br>
         <div miscTab="options">
             <button onclick="saveGame()">Save</button><button onclick="confirmHardReset()">START OVER</button><br>
@@ -204,10 +206,18 @@
             <a href="https://discord.gg/aggGeRc" target="_blank"><img id="socialImage" src="./images/discord-icon.svg" alt=""></a>&nbsp;
             <a href="https://www.patreon.com/Bullz04" target="_blank"><img id="socialImage" src="./images/patreon-icon.svg" alt=""></a>
         </div>
+        <div miscTab="changelog">
+            <span class="title">v1.0.0 - July 3rd, 2024</span>
+            <div class="changelogContainer">
+                <ul>
+                    <li>Created a game</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div tab="automation" style="display: none;">
         <button onclick="temp.automation.basicAutomators.switchBuyMode()">Upgrade Mode: <span id="AutomationBuyMode"></span></button><br>
-        <span class="title" style="font-size: 20px;">Basic Automators</span>
+        <span class="title">Basic Automators</span>
         
         <div class="AutomationContainer">
             <div id="Autoclicker" class="automator">

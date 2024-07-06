@@ -1,7 +1,7 @@
 var currentVersion = "v1.0.0"
 class Player {
     constructor() {
-        //this.version = "v1.0.0"
+        this.version = currentVersion
         this.offlineSecondsLeftover = 0
         this.lastUpdate = Date.now()
         this.points = new OmegaNum(10)

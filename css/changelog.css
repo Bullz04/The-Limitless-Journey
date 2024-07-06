@@ -1,0 +1,13 @@
+.changelogContainer {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.changelogContainer li {
+    width: fit-content;
+    margin-right: auto;
+}
+.changelogContainer ul {
+    padding: 0;
+}

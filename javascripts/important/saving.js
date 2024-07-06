@@ -53,6 +53,7 @@ function loadGame(importedSave) {
                 else player.lastUpdate = loadValue(ls.lastUpdate, Date.now())
             }
         }
+        player.version = loadValue(ls.version, currentVersion)
         player.points = loadValue(new OmegaNum(ls.points), new OmegaNum(10))
         player.autoClicks = loadValue(new OmegaNum(ls.autoClicks), new OmegaNum(0))
         player.manualClicks = loadValue(new OmegaNum(ls.manualClicks), new OmegaNum(0))
