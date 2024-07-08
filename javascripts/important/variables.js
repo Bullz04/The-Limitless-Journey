@@ -1,4 +1,4 @@
-var currentVersion = "v1.0.0"
+var currentVersion = "v1.0.1"
 class Player {
     constructor() {
         this.version = currentVersion
