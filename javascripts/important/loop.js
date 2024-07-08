@@ -44,9 +44,11 @@ function gameLoop() {
     updateUnlocks()
     updateAchievementLevels()
 
-    showTabs()
-    showMainTabs()
-    showPointMainTabs()
+    updateTabButtons()
+    updateMainTabButtons()
+    updateStatsTabButtons()
+    updatePointMainTabButtons()
+    updateMiscellaneousTabButtons()
 
     if (player.options.offlineProgression == "on" && diff.gte(60)) {
         setOfflineSeconds()

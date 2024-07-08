@@ -51,6 +51,20 @@ function setAllAttributes(selector, name, value) {
     }
 }
 
+function addAllClassLists(selector, value) {
+    let x = document.querySelectorAll(selector)
+    for (let i = 0; i<x.length; i++) {
+        x[i].classList.add(value)
+    }
+}
+
+function removeAllClassLists(selector, value) {
+    let x = document.querySelectorAll(selector)
+    for (let i = 0; i<x.length; i++) {
+        x[i].classList.remove(value)
+    }
+}
+
 function removeAllAttributes(selector, name) {
     let x = document.querySelectorAll(selector)
     for (let i = 0; i<x.length; i++) {
