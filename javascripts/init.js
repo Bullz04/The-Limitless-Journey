@@ -12,7 +12,7 @@ function init() {
 
 var gameLoaded = false
 document.onload = init()
-document.onbeforeunload = ()=> {player.offlineSecondsLeftover = offlineSeconds}
+document.onbeforeunload = ()=> {player.offlineSecondsLeftover = offlineSeconds; saveGame()}
 {
     let x = document.querySelectorAll("#PointClickButton")
     for (let i = 0; i<x.length; i++) {
