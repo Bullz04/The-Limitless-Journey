@@ -6,7 +6,8 @@ function saveGame() {
 }
 
 function loadValue(x, alt) {
-    return x !== undefined ? x : alt
+    if (x !== undefined) return x
+    else return alt
 }
 //importSave(document.getElementById('saveText').value)
 function confirmImportSave() {
@@ -24,6 +25,11 @@ function yesClickHardReset() {
 
 function importSave(x) {
     loadGame(x)
+}
+
+function versionIsOlder(x, y) {//is x older than y? 
+    if (versionOrder.indexOf(x) < versionOrder.indexOf(y)) return true
+    else return false
 }
 
 function loadGame(importedSave) {
@@ -45,15 +51,17 @@ function loadGame(importedSave) {
             console.log(error)
         }
         ls = loadedSave
-        player.offlineSecondsLeftover = loadValue(ls.offlineSecondsLeftover, 0)
         player.version = loadValue(ls.version, currentVersion)
+        player.offlineSeconds = loadValue(ls.offlineSeconds, 0)
+        if (versionIsOlder(player.version, currentVersion)) {
+            player.offlineSeconds = loadValue(ls.offlineSecondsLeftover, 0)
+        }
         if (ls.options !== undefined) {
             if (ls.options.offlineProgression) {
                 if (ls.options.offlineProgression == "off") player.lastUpdate = loadValue(Date.now(), Date.now())
                 else player.lastUpdate = loadValue(ls.lastUpdate, Date.now())
             }
         }
-        player.version = loadValue(ls.version, currentVersion)
         player.points = loadValue(new OmegaNum(ls.points), new OmegaNum(10))
         player.autoClicks = loadValue(new OmegaNum(ls.autoClicks), new OmegaNum(0))
         player.manualClicks = loadValue(new OmegaNum(ls.manualClicks), new OmegaNum(0))
@@ -83,7 +91,7 @@ function loadGame(importedSave) {
             player.options.thrusterPointUpgradeBuyMode = loadValue(ls.options.thrusterPointUpgradeBuyMode, "singles")
             player.options.automationBuyMode = loadValue(ls.options.automationBuyMode, "singles")
             player.options.offlineProgression = loadValue(ls.options.offlineProgression, "on")
-            player.options.offlineProgressionRate = loadValue(ls.options.offlineProgressionRate, 0.1)
+            player.options.numberBehavior = loadValue(ls.options.numberBehavior, 0)
         }
         if (ls.pointUpgrades !== undefined) {
             /*for (let k of Object.keys(player.pointUpgrades)) {
@@ -130,6 +138,7 @@ function loadGame(importedSave) {
                 player.thrusterPoints.upgrades[i] = loadValue(new OmegaNum(ls.thrusterPoints.upgrades[i]), new OmegaNum(0))
             }
         }
+        player.version = currentVersion//update newest version
         gameLoaded = true
     }
 }

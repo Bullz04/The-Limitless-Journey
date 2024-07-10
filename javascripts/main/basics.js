@@ -112,7 +112,7 @@ var rankRewards = [
     [5, "Unlock 1 another point upgrade"],//5
     [7, "Unlock 1 another point upgrade"],//6
     [9, "Unlock Autoupgrader"],//7
-    [10, "Unlock producer^2 (cursor^2 dan factory^2)"],//8
+    [10, "Unlock producer^2 (cursor^2 and factory^2)"],//8
     [12, "Unlock 3 another point upgrade"],//9
     [13, "Cursors and factories boost point gain"],//10
     [17, () => "Add scaling weakness to super point upgrade 3 by +" + format(getRankEffect("11").times(100), 3, 3) + "%"],//11

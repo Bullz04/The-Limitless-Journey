@@ -6,7 +6,7 @@ function updateUnlocks() {
 
 function modalIsDisplayed() {
     let disp = false
-    if (offlineSeconds > 0) disp = true
+    if (player.offlineSeconds > 0) disp = true
     if (confirmStatus.import) disp = true
     if (confirmStatus.hardReset) disp = true
     return disp
@@ -239,7 +239,7 @@ function HTMLsetup() {
 
 function updateHTMLElements() {
     document.getElementById("LoadingScreen").style.display = "none"
-    document.getElementById("OfflineTime").innerHTML = format(new OmegaNum(offlineSeconds), 3, 0)
+    document.getElementById("OfflineTime").innerHTML = format(new OmegaNum(player.offlineSeconds), 3, 0)
     document.getElementById("PointsPerSecond").innerHTML = format(getPointsPerSecond(), 3, 2, undefined, 1e9)
     document.getElementById("PointAmt").innerHTML = format(player.points, 3, 2, undefined, 1e9)
     document.getElementById("FeatureMilestone").innerHTML = featureMilestoneDisp()
@@ -266,6 +266,7 @@ function updateHTMLElements() {
         setAllAttributes(".automator", "mobile", "")
         setAllAttributes(".MessageChoice", "mobile", "")
         setAllAttributes("img#socialImage", "mobile", "")
+        setAllAttributes("img#TLJlogo", "mobile", "")
     } else {
         removeAllAttributes("table", "mobile")
         removeAllAttributes("body", "mobile")
@@ -283,6 +284,7 @@ function updateHTMLElements() {
         removeAllAttributes(".automator", "mobile")
         removeAllAttributes(".MessageChoice", "mobile")
         removeAllAttributes("img#socialImage", "mobile")
+        removeAllAttributes("img#TLJlogo", "mobile")
     }
     if (currentTab == "main") {
         if (currentMainTab == "point-prod-page") {
@@ -574,7 +576,7 @@ function updateHTMLElements() {
         }
     }
     if (modalIsDisplayed()) {
-        document.getElementById("OfflineCalculation").style.display = (offlineSeconds > 0 ? "" : "none")
+        document.getElementById("OfflineCalculation").style.display = (player.offlineSeconds > 0 ? "" : "none")
         document.getElementById("ImportConfirmation").style.display = (confirmStatus.import ? "" : "none")
         document.getElementById("HardResetConfirmation").style.display = (confirmStatus.hardReset ? "" : "none")
 

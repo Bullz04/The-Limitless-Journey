@@ -152,3 +152,13 @@ img#socialImage[mobile] {
     margin-left: calc(15px / 1.75);
     margin-right: calc(15px / 1.75);
 }
+
+img#TLJlogo {
+    width: 200px;
+    height: 200px;
+}
+
+img#TLJlogo[mobile] {
+    width: calc(200px / 1.75);
+    height: calc(200px / 1.75);
+}

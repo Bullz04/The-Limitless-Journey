@@ -1,8 +1,8 @@
-var currentVersion = "v1.0.1"
+var currentVersion = "v1.0.2"
 class Player {
     constructor() {
         this.version = currentVersion
-        this.offlineSecondsLeftover = 0
+        this.offlineSeconds = 0
         this.lastUpdate = Date.now()
         this.points = new OmegaNum(10)
         this.lifetimeGainedPoints = new OmegaNum(0)
@@ -43,7 +43,7 @@ class Player {
             thrusterPointUpgradeBuyMode: "singles",
             automationBuyMode: "singles",
             offlineProgression: "on",
-            offlineProgressionRate: 0.1
+            numberBehavior: 0
         }
         this.pointUpgrades = [
             new OmegaNum(0),new OmegaNum(0),
@@ -108,7 +108,11 @@ class Player {
     fruit:
 }*/
 var player = new Player()
-player.version = currentVersion
+var versionOrder = [
+    "v1.0.0",
+    "v1.0.1",
+    "v1.0.2"
+]
 var confirmStatus = {
     import: false,
     hardReset: false

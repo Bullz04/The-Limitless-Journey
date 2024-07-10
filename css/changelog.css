@@ -6,8 +6,8 @@
 
 .changelogContainer li {
     width: fit-content;
+    text-align: left;
     margin-right: auto;
 }
 .changelogContainer ul {
-    padding: 0;
 }

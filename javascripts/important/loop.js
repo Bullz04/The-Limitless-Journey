@@ -6,20 +6,18 @@ function productionLoop(diff) {
 }
 
 function offlineLoop(diff) {
-
-    offlineSecondsMax = Math.max(120, offlineSeconds, offlineSecondsMax)
-    if (offlineSeconds <= 0) offlineSecondsMax = 120
-    let secondsUsed = Math.min(offlineSecondsMax * player.options.offlineProgressionRate * diff, offlineSeconds)
-    offlineSeconds -= Math.max(secondsUsed, 0)
+    offlineSecondsMax = Math.max(120, player.offlineSeconds, offlineSecondsMax)
+    if (player.offlineSeconds <= 0) offlineSecondsMax = 120
+    let secondsUsed = Math.min(offlineSecondsMax * 0.1 * diff, player.offlineSeconds)
+    player.offlineSeconds -= Math.max(secondsUsed, 0)
     productionLoop(secondsUsed)
 }
 
 function setOfflineSeconds() {
     let now = Date.now();
     if (player.options.offlineProgression == "on") {
-        offlineSeconds = ((now - player.lastUpdate) / 1000) + player.offlineSecondsLeftover
-    } else offlineSeconds = 0
-    player.offlineSecondsLeftover = 0
+        player.offlineSeconds += ((now - player.lastUpdate) / 1000)
+    } else player.offlineSeconds += 0
 }
 
 function gameLoop() {
@@ -57,7 +55,7 @@ function gameLoop() {
         diff = new OmegaNum(0)
     }
     offlineLoop(diff)
-    if (offlineSeconds <= 0) productionLoop(diff) 
+    if (player.offlineSeconds <= 0) productionLoop(diff) 
     if (saveTimer >= 15) {
         saveTimer = 0
         saveGame()

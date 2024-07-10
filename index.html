@@ -18,7 +18,7 @@
     <title>The Limitless Journey</title>
     <link rel="shortcut icon" href="./images/tlj-logo.svg" type="image/x-icon">
 </head>
-<body  onbeforeunload="saveGame()">
+<body>
     <span id="FeatureMilestone"></span><br><br>
     You have <span id="PointAmt" class="title"></span> points<br> <!--Font size is set on update.js-->
     (+<span id="PointsPerSecond"></span>/s)<br>
@@ -186,20 +186,26 @@
                 <div class="OptionSection">
                     Notation:<br>
                     <button class="yellow" id="standardNotation" onclick="switchNotation('standard')">Standard</button><br>
-                    <button class="yellow" id="scientificNotation" onclick="switchNotation('scientific')">Scientific</button>
+                    <button class="yellow" id="scientificNotation" onclick="switchNotation('scientific')">Scientific</button><br>
+                    <button class="yellow" id="engineeringNotation" onclick="switchNotation('engineering')">Engineering</button>
                 </div>
                 <div class="OptionSection">
                     Offline Progression:<br>
                     <button class="yellow" id="OfflineProgressionOn" onclick="switchOfflineProg('on')">Enabled</button><br>
-                    <button class="yellow" id="OfflineProgressionLimited" onclick="switchOfflineProg('limited')" style="display: none;">Terbatas (8 jam)</button>
                     <button class="yellow" id="OfflineProgressionOff" onclick="switchOfflineProg('off')">Disabled</button>
+                </div>
+                <div class="OptionSection">
+                    Number Behavior:<br>
+                    <button class="yellow" id="NumberBehavior0" onclick="switchNumberBehavior(0)">Keep trailing zeroes at every fractional part</button><br>
+                    <button class="yellow" id="NumberBehavior1" onclick="switchNumberBehavior(1)">Remove trailing zeroes at every fractional part</button>
                 </div>
             </div>
         </div>
         <div miscTab="about">
             <span class="title">The Limitless Journey</span><br>
-            <img src="./images/tlj-logo.svg" width="200" height="200">
+            <img src="./images/tlj-logo.svg" id="TLJlogo">
             <br>
+            Created by Bullz 04.<br>
             Wander through this universe and witness secrets of this universe. Can you reach the edge of The Limitless Journey?<br><br>
             This is my first game. All other previous projects are modifications, which don't come from my idea, and are abandoned.<br>
             If you found this game fun, consider be one of my patrons.<br><br>
@@ -207,6 +213,19 @@
             <a href="https://www.patreon.com/Bullz04" target="_blank"><img id="socialImage" src="./images/patreon-icon.svg" alt=""></a>
         </div>
         <div miscTab="changelog">
+            <span class="title">v1.0.2 - July 10th, 2024</span>
+                <br>
+                Note from Dev: If you see this note, expect for less updates from now on!<br>
+                Further updates will be unsustainable because the hardware used for development is barely compatible and is 11 years old! I will get new laptop in August, but I'll also have my first uni class; therefore, there won't be much time for working on this. I'm sorry!
+            <div class="changelogContainer">
+                <ul>
+                    <li>Added new option section related to how numbers behave.</li>
+                    <li>Added new notation: Engineering.</li>
+                    <li>Offline progression fix.</li>
+                    <li>Typo fix at 8th rank reward.</li>
+                </ul>
+            </div>
+            <br><br>
             <span class="title">v1.0.1 - July 8th, 2024</span>
             <div class="changelogContainer">
                 <ul>
@@ -230,7 +249,7 @@
         <div class="AutomationContainer">
             <div id="Autoclicker" class="automator">
                 <span class="title">Autoclicker</span><br>
-                Automatically trigger click production for you<br>
+                Automatically trigger click production for you.<br>
                 Level: <span id="AutoclickerLevel"></span><br>
                 <span id="AutoclickerEffect"></span><br>
                 <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
@@ -242,7 +261,7 @@
             <div id="Autoupgrader" class="automator">
                 <span class="title">Autoupgrader</span><br>
                 <!--Membeli peningkatan poin secara otomatis saat jumlah poin sebanyak 4 kalinya harga-->
-                Automatically buy point upgrades for you when points are above 4 times of the cost<br>
+                Automatically buy point upgrades for you when points are above 4 times of the cost.<br>
                 Level: <span id="AutoupgraderLevel"></span><br>
                 <span id="AutoupgraderEffect"></span><br>
                 <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
@@ -253,7 +272,7 @@
             </div>
             <div id="Autothruster" class="automator">
                 <span class="title">Autothruster</span><br>
-                Automatically buy a thruster for you<br>
+                Automatically buy a thruster for you.<br>
                 Level: <span id="AutothrusterLevel"></span><br>
                 <span id="AutothrusterEffect"></span><br>
                 <div class="ProgressBar" style="min-height: 0px;width: calc(100% - 16px); margin-right: 8px; margin-left: 8px; background-color: rgb(63, 63, 63);">&nbsp;
@@ -287,8 +306,8 @@
         <div id="HardResetConfirmation" class="MessageBox" style="display: none;">
             <div class="MessageTitle">Hard Reset Save?</div>
             <div class="MessageContent">
-                This action will DELETE your current save! I'd suggest to export save first<br><br>
-                Click yes 50 times to confirm
+                This action will DELETE your current save! I'd suggest to export save first.<br><br>
+                Click yes 50 times to confirm.
             </div>
             <div class="MessageChoice"><button id="YesHardReset" onclick="yesClickHardReset()">Yes (50)</button><button onclick="confirmStatus.hardReset = false; yesHardResetClicksLeft = 50">No</button></div>
         </div>
